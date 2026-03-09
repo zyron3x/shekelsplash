@@ -21,7 +21,7 @@
   min-height: 480px;
   overflow: hidden;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: center;
   background: #1a1a1a;
 }
@@ -67,7 +67,7 @@
   position: relative;
   z-index: 4;
   text-align: center;
-  padding: var(--space-12) var(--space-4) var(--space-8);
+  padding: var(--space-16) var(--space-4) var(--space-8);
   max-width: 700px;
 }
 
