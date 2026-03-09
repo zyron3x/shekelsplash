@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Shekelsplash — SHFL Lottery EV Calculator & Shuffle Staker Dashboard -->
+<meta name="generator" content="Shekelsplash">
+<meta name="author" content="Shekelsplash">
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="Shekelsplash">
+<meta property="og:title" content="Shekelsplash — SHFL Lottery EV Calculator & Staker Dashboard">
+<meta property="og:description" content="Calculate expected value for Shuffle Casino's SHFL lottery. Standard tickets, Powerplay, staked yield analysis & historical analytics.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shekelsplash.com">
+<meta property="og:image" content="https://shekelsplash.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Shekelsplash — SHFL Lottery EV Calculator">
+<meta property="og:locale" content="en_US">
+
+
+<!-- Additional SEO -->
+<meta name="robots" content="index, follow">
+<meta name="keywords" content="SHFL, Shuffle Casino, lottery, EV calculator, expected value, staking, Powerplay, crypto lottery, SHFL staking">
+<meta name="theme-color" content="#0a0a1a">
+<link rel="canonical" href="https://shekelsplash.com">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Shekelsplash",
+  "url": "https://shekelsplash.com",
+  "description": "Calculate expected value for Shuffle Casino's SHFL lottery. Standard tickets, Powerplay, staked yield analysis & historical analytics.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shekelsplash — SHFL Lottery EV Calculator</title>
+<meta name="description" content="Calculate expected value for Shuffle Casino's SHFL lottery. Standard tickets, Powerplay, staked yield analysis.">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+
+<!-- Chart.js + date adapter -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" defer></script>
+
+<!-- History Data -->
+<script src="./history-data.js" defer></script>
+
+<!-- Styles -->
+<link rel="stylesheet" href="./base.css">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<!-- ════════ HERO ════════ -->
+<section class="hero" aria-label="Hero">
+  <div class="hero__image-wrap">
+    <img src="./assets/saltbae.jpg" alt="Salt Bae sprinkling lottery balls" class="hero__image" width="2546" height="1080" loading="eager" decoding="async">
+    <div class="hero__gradient"></div>
+  </div>
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+  <div class="hero__content">
+    <h1 class="hero__title">
+      <svg class="hero__logo" width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true" style="display:inline-block;vertical-align:middle;margin-right:8px;margin-bottom:6px">
+        <circle cx="20" cy="20" r="18" stroke="#EEE2FF" stroke-width="1.5" fill="rgba(238,226,255,0.08)"/>
+        <text x="20" y="27" text-anchor="middle" font-size="22" font-weight="700" fill="#EEE2FF" font-family="'Clash Display',sans-serif">₪</text>
+      </svg>
+      Shekel<span>splash</span>
+    </h1>
+    <p class="hero__subtitle hero__subtitle--dream">All you need is 25 cents and a dream.</p>
+    <a href="https://shuffle.com?r=9IIpKzStsO" target="_blank" rel="noopener noreferrer" class="hero__cta">WIN THE LOTTERY</a>
+  </div>
+</section>
+
+<!-- ════════ MAIN ════════ -->
+<main id="main-content">
+<div class="page-wrapper">
+
+  <!-- ──── INPUTS ──── -->
+  <section class="section reveal" aria-label="Inputs">
+    <div class="section__header">
+      <h2 class="section__title">Parameters</h2>
+      <p class="section__description">Adjust pool sizes, participation estimates, and your tickets. Results update in real-time.</p>
+    </div>
+
+    <!-- Division Pools -->
+    <div class="input-section">
+      <h3 class="input-section__title">
+        <svg class="input-section__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z"/></svg>
+        Division Prize Pools
+      </h3>
+      <div class="input-grid input-grid--3col">
+        <div class="input-group input-group--dollar">
+          <label for="pool-0">Div 1 — 5+PB (Jackpot)</label>
+          <div class="input-dollar-wrap"><span class="input-dollar-sign">$</span><input type="number" id="pool-0" value="1083204.01" step="any"></div>
+        </div>
+        <div class="input-group input-group--dollar">
+          <label for="pool-1">Div 2 — 5 main</label>
+          <div class="input-dollar-wrap"><span class="input-dollar-sign">$</span><input type="number" id="pool-1" value="37536.70375" step="any"></div>
+        </div>
+        <div class="input-group input-group--dollar">
+          <label for="pool-2">Div 3 — 4+PB</label>
+          <div class="input-dollar-wrap"><span class="input-dollar-sign">$</span><input type="number" id="pool-2" value="21437.76" step="any"></div>
+        </div>
+        <div class="input-group input-group--dollar">
+          <label for="pool-3">Div 4 — 4 main</label>
+          <div class="input-dollar-wrap"><span class="input-dollar-sign">$</span><input type="number" id="pool-3" value="24117.47" step="any"></div>
+        </div>
+        <div class="input-group input-group--dollar">
+          <label for="pool-4">Div 5 — 3+PB</label>
+          <div class="input-dollar-wrap"><span class="input-dollar-sign">$</span><input type="number" id="pool-4" value="18758.04" step="any"></div>
+        </div>
+        <div class="input-group input-group--dollar">
+          <label for="pool-5">Div 6 — 3 main</label>
+          <div class="input-dollar-wrap"><span class="input-dollar-sign">$</span><input type="number" id="pool-5" value="16078.32" step="any"></div>
+        </div>
+        <div class="input-group input-group--dollar">
+          <label for="pool-6">Div 7 — 2+PB</label>
+          <div class="input-dollar-wrap"><span class="input-dollar-sign">$</span><input type="number" id="pool-6" value="13398.60" step="any"></div>
+        </div>
+        <div class="input-group input-group--dollar">
+          <label for="pool-7">Div 8 — 1+PB</label>
+          <div class="input-dollar-wrap"><span class="input-dollar-sign">$</span><input type="number" id="pool-7" value="26797.19" step="any"></div>
+        </div>
+        <div class="input-group input-group--dollar">
+          <label for="pool-8">Div 9 — PB only</label>
+          <div class="input-dollar-wrap"><span class="input-dollar-sign">$</span><input type="number" id="pool-8" value="29476.91" step="any"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Participation -->
+    <div class="input-section">
+      <h3 class="input-section__title">
+        <svg class="input-section__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zm8 0a3 3 0 11-6 0 3 3 0 016 0zm-4.07 11c.01-.11.02-.22.02-.33V15a4 4 0 00-1.26-2.91A5.98 5.98 0 0118 16v1a1 1 0 01-1 1h-4.07zM6 11a5 5 0 015 5v1a1 1 0 01-1 1H2a1 1 0 01-1-1v-1a5 5 0 015-5z"/></svg>
+        Participation Estimates
+      </h3>
+      <div class="input-grid">
+        <div class="input-group">
+          <label for="shfl-price">SHFL Price ($) <span class="price-live-dot" id="price-status" title="Live price"></span></label>
+          <input type="number" id="shfl-price" value="0.2709" step="any">
+          <span class="input-group__hint">Price data by <a href="https://www.coingecko.com/" target="_blank" rel="noopener noreferrer" style="color:var(--brand-light);text-decoration:underline">CoinGecko</a></span>
+        </div>
+        <div class="input-group">
+          <label for="shfl-staked">Total SHFL Staked by Others</label>
+          <input type="number" id="shfl-staked" value="226795050" step="any">
+        </div>
+        <div class="input-group">
+          <label for="others-std">Other Standard Tickets/Week</label>
+          <input type="number" id="others-std" value="50000" step="1">
+        </div>
+        <div class="input-group">
+          <label for="others-pp">Other Powerplay Tickets/Week</label>
+          <input type="number" id="others-pp" value="5000" step="1">
+        </div>
+      </div>
+    </div>
+
+    <!-- My Tickets -->
+    <div class="input-section">
+      <h3 class="input-section__title">
+        <svg class="input-section__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5 2a2 2 0 00-2 2v14l3.5-2 3.5 2 3.5-2 3.5 2V4a2 2 0 00-2-2H5zm4.707 3.707a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L8.414 9H10a3 3 0 013 3v1a1 1 0 102 0v-1a5 5 0 00-5-5H8.414l1.293-1.293z" clip-rule="evenodd"/></svg>
+        My Tickets
+      </h3>
+      <div class="input-grid">
+        <div class="input-group">
+          <label for="my-shfl">My Staked SHFL</label>
+          <input type="number" id="my-shfl" value="0" step="any" min="0">
+          <span class="input-group__hint">50 SHFL = 1 ticket/week</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ──── KPI CARDS ──── -->
+  <section class="section reveal" aria-label="Key Metrics">
+    <div class="section__header">
+      <h2 class="section__title">Results Dashboard</h2>
+    </div>
+
+    <div class="kpi-grid">
+      <!-- Total Pool -->
+      <div class="kpi-card kpi-card--highlight">
+        <div class="kpi-card__label">Total Prize Pool</div>
+        <div class="kpi-card__value tabular-nums" id="kpi-total-pool">—</div>
+        <div class="kpi-card__sub" id="kpi-total-pool-sub">9 divisions</div>
+      </div>
+
+      <!-- Staked Yield -->
+      <div class="kpi-card">
+        <div class="kpi-card__label">Staked Annual Yield</div>
+        <div class="kpi-card__value tabular-nums" id="kpi-yield">—</div>
+        <div class="kpi-card__sub" id="kpi-yield-sub">—</div>
+        <span class="kpi-card__badge kpi-card__badge--positive" id="kpi-yield-badge">+EV</span>
+      </div>
+
+      <!-- Total Combos -->
+      <div class="kpi-card">
+        <div class="kpi-card__label">Total Combos in Play</div>
+        <div class="kpi-card__value tabular-nums" id="kpi-combos">—</div>
+        <div class="kpi-card__sub" id="kpi-combos-sub">—</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──── MY POSITION ──── -->
+  <section class="section reveal" id="my-position" aria-label="My Position">
+    <div class="position-card">
+      <h2 class="position-card__title">My Position</h2>
+      <div class="position-empty" id="position-empty">
+        Enter tickets above to see your expected returns.
+      </div>
+      <div class="position-grid hidden" id="position-grid">
+        <div class="position-item">
+          <div class="position-item__label">Total EV</div>
+          <div class="position-item__value tabular-nums" id="pos-total-ev">—</div>
+        </div>
+        <div class="position-item">
+          <div class="position-item__label">Ticket Cost</div>
+          <div class="position-item__value tabular-nums" id="pos-total-cost">—</div>
+        </div>
+        <div class="position-item">
+          <div class="position-item__label">Net Position</div>
+          <div class="position-item__value tabular-nums" id="pos-net">—</div>
+        </div>
+        <div class="position-item">
+          <div class="position-item__label">SHFL Staked Value</div>
+          <div class="position-item__value tabular-nums" id="pos-staked-val">—</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──── CHARTS ──── -->
+  <section class="section reveal" aria-label="Charts">
+    <div class="section__header">
+      <h2 class="section__title">Visual Breakdown</h2>
+    </div>
+
+    <div class="chart-grid">
+      <div class="chart-card">
+        <h3 class="chart-card__title">Pool Distribution</h3>
+        <canvas id="chart-pool" aria-label="Doughnut chart showing prize pool distribution across 9 divisions" role="img"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3 class="chart-card__title">EV Contribution by Division</h3>
+        <canvas id="chart-ev" aria-label="Bar chart showing expected value contribution per division" role="img"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ──── SHFL STAKING DASHBOARDS ──── -->
+  <section class="section reveal" aria-label="SHFL Staking Analytics">
+    <div class="section__header">
+      <h2 class="section__title">SHFL Staking Analytics</h2>
+      <p class="section__description">73-draw historical data powering the +EV staking thesis. Prize pool funded by 15% platform NGR + 85% of single ticket sales weekly.</p>
+    </div>
+
+    <!-- Staking KPI Row -->
+    <div class="staking-kpi-row staking-kpi-row--5col">
+      <div class="staking-kpi">
+        <div class="staking-kpi__icon staking-kpi__icon--green">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2a10 10 0 110 20 10 10 0 010-20z"/><path d="M12 6v12M8 12h8"/></svg>
+        </div>
+        <div class="staking-kpi__content">
+          <div class="staking-kpi__value tabular-nums" id="sk-total-paid">—</div>
+          <div class="staking-kpi__label">Total Paid to Players &amp; Stakers</div>
+        </div>
+      </div>
+      <div class="staking-kpi">
+        <div class="staking-kpi__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
+        <div class="staking-kpi__content">
+          <div class="staking-kpi__value tabular-nums" id="sk-cum-ngr">—</div>
+          <div class="staking-kpi__label">Cumulative NGR Added</div>
+        </div>
+      </div>
+      <div class="staking-kpi">
+        <div class="staking-kpi__icon staking-kpi__icon--gold">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+        </div>
+        <div class="staking-kpi__content">
+          <div class="staking-kpi__value tabular-nums" id="sk-cum-singles">—</div>
+          <div class="staking-kpi__label">Cumulative Singles Revenue</div>
+        </div>
+      </div>
+      <div class="staking-kpi">
+        <div class="staking-kpi__icon staking-kpi__icon--green">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M23 6l-9.5 9.5-5-5L1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <div class="staking-kpi__content">
+          <div class="staking-kpi__value tabular-nums" id="sk-median-ngr">—</div>
+          <div class="staking-kpi__label">Median Weekly NGR</div>
+        </div>
+      </div>
+      <div class="staking-kpi">
+        <div class="staking-kpi__icon staking-kpi__icon--red">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+        </div>
+        <div class="staking-kpi__content">
+          <div class="staking-kpi__value tabular-nums" id="sk-jackpots">—</div>
+          <div class="staking-kpi__label">Jackpot Hits (73 Draws)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prize Pool Over Time -->
+    <div class="dash-chart-card">
+      <div class="dash-chart-card__header">
+        <h3 class="dash-chart-card__title">Prize Pool Over Time</h3>
+        <span class="dash-chart-card__badge">73 Draws</span>
+      </div>
+      <div class="dash-chart-card__body">
+        <canvas id="chart-pool-history" aria-label="Line chart showing prize pool growth over 73 draws" role="img"></canvas>
+      </div>
+    </div>
+
+    <!-- Two-column: NGR + Singles -->
+    <div class="dash-grid">
+      <div class="dash-chart-card">
+        <div class="dash-chart-card__header">
+          <h3 class="dash-chart-card__title">Weekly NGR Added</h3>
+          <span class="dash-chart-card__sub" id="sk-avg-ngr">—</span>
+        </div>
+        <div class="dash-chart-card__body">
+          <canvas id="chart-ngr-history" aria-label="Bar chart showing weekly NGR contributions" role="img"></canvas>
+        </div>
+      </div>
+      <div class="dash-chart-card">
+        <div class="dash-chart-card__header">
+          <h3 class="dash-chart-card__title">Weekly Singles Revenue</h3>
+          <span class="dash-chart-card__sub" id="sk-avg-singles">—</span>
+        </div>
+        <div class="dash-chart-card__body">
+          <canvas id="chart-singles-history" aria-label="Bar chart showing weekly singles ticket revenue" role="img"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cumulative Growth -->
+    <div class="dash-chart-card">
+      <div class="dash-chart-card__header">
+        <h3 class="dash-chart-card__title">Cumulative Pool Inflows</h3>
+        <span class="dash-chart-card__badge dash-chart-card__badge--green">+EV Staking</span>
+      </div>
+      <div class="dash-chart-card__body">
+        <canvas id="chart-cumulative" aria-label="Area chart showing cumulative NGR and singles revenue" role="img"></canvas>
+      </div>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<!-- ════════ FOOTER ════════ -->
+<footer class="footer">
+  <div class="page-wrapper">
+    <div class="footer__links">
+      <a href="https://shuffle.com/lottery" target="_blank" rel="noopener noreferrer">Shuffle Lottery</a>
+      <a href="https://shuffle.com" target="_blank" rel="noopener noreferrer">Shuffle Casino</a>
+    </div>
+    <div class="footer__attribution">
+      <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Particle System -->
+<script src="./particles.js" defer></script>
+<!-- App JS -->
+<script src="./app.js" defer></script>
+</body>
+</html>
